@@ -1,0 +1,118 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content-"width=device-width,initial-scale=1.0">
+        <title>Registration form</title>
+        <link rel="stylesheet" href="style.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Poppins",sans-serif;
+        }
+        body{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            {% comment %} background:seagreen; {% endcomment %}
+        }
+        .wrapper{
+            width:400px;
+            background-image: linear-gradient(to bottom right,#fff,#307D7E, #4C787E,#fff);
+            color:#333;
+            padding:40px 35px 55px;
+
+        }
+        .wrapper h1{
+            font-size:36px;
+            text-align:center;
+            margin-bottom:20px;
+        }
+        .wrapper .input-box{
+            display:flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            margin-left:60px;
+            {% comment %} background:slateblue; {% endcomment %}
+        }
+        .input-box .input-field{
+           position:relative;
+           width:80%;
+           height:50px;
+           background:transparent;
+           margin:13px 0; 
+        }
+        .input-box .input-field input {
+            width:100%;
+            height:100%;
+            background:transparent;
+            border:2px solid black;
+            outline:none;
+            font-size:16px;
+            color:black;
+            border-radius:8px;
+            padding:15px 15px 15px 40px;
+        }
+        .input-box .input-field input::placeholder{
+            color:#fff;
+        }
+        .input-box .input-field i {
+            position:absolute;
+            left:15px;
+            top:50%;
+            transform:translateY(-50%);
+            font-size:20px;
+        }
+        .wrapper .btn{
+            width:100%;
+            height:45px;
+            background-image: linear-gradient(to bottom right,#fff,#307D7E, #4C787E,#fff);
+            border:none;
+            outline:none;
+            border-radius:6px;
+            box-shadow:0 0 10px rgba(0,0,0,.1);
+            cursor:pointer;
+            font-size:16px;
+            color:#fff;
+            font-wieght:600;
+        }
+    </style>
+    <script>
+        function showSuccessMessage() {
+            alert("Your application is submitted");
+         document.getElementById("registration-form").reset();
+        }
+    </script> 
+    <body>
+        <div class="wrapper">
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <h1>Registraion </h1>
+                <div class="input-box">
+                    <div class="input-field">
+                        <input type="text" name="username" placeholder="Full name" required>
+                          <i class='bx bx-user-circle'></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="Your password" required>
+                    <i class='bx bx-lock'></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="cpassword" placeholder="Confirm password" required>
+                <i class='bx bx-lock'></i>
+                </div>
+                </div>
+                <button type="submit" class="btn"><a href="{% url 'login' %}">Register</a></button>
+            </form>
+            {% for msg in messages %}
+            {{msg}}
+            {% endfor %}
+
+        </div>
+    </body>
+</html>

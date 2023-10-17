@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #ffffff;
+            margin: 50px 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+        }
+    
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+    
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        input[type=text], input[type=password] {
+            width: 75%;
+            padding: 5px 10px;
+            margin:3px ;
+            margin-left:20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+          }
+    
+        input, text {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #000000;
+            color: #ffffff;
+        }
+    
+        /* Custom border style */
+        form {
+            border: 2px solid #000000;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        /* Remove link decoration */
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+          </style>
+</head>
+<body>
+    <h1>Register Form</h1>
+    <form action="/signup" method="POST">
+    {% csrf_token %}
+    <label for="">Username </label>
+    <input type="text" id="username" name="username" placeholder="name" required><br><br>
+     <label for="">password </label>
+    <input type="password" id="pass1" name="pass1" placeholder="pass1" required><br><br>
+    <label for="">confirm password </label>
+    <input type="password" id="pass2" name="pass2" placeholder="pass2" required><br><br>
+    <button type="submit"><a href="{% url 'signin' %}"></a>Register</button>
+     
+     
+    </form>
+<center>
+    {% for msg in messages %}
+    {{msg}}
+    {% endfor %}
+</center>
+</body>
+</html>
